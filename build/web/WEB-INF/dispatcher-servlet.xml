@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- was: <?xml version="1.0" encoding="UTF-8"?> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
+
+    <!--
+    Most controllers will use the ControllerClassNameHandlerMapping above, but
+    for the index controller we are using ParameterizableViewController, so we must
+    define an explicit mapping for it.
+    -->
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <!--INDEX-->
+                <prop key="index.htm">indexController</prop>
+                
+                <!--COMPRADOR-->
+                <prop key="altaComprador.htm">compradorBean</prop>
+                <prop key="listaComprador.htm">compradorBean</prop>
+                <prop key="editarComprador.htm">compradorBean</prop>
+                <prop key="eliminarComprador.htm">compradorBean</prop>
+                <!--<prop key="listaBuscar.htm">compradorBean</prop>-->
+                <prop key="qrVista.htm">compradorBean</prop>
+                <!-- DISTRIBUIDORA -->
+                <prop key="altaDistribuidora.htm">distribuidoraBean</prop>
+                <prop key="listaDistribuidora.htm">distribuidoraBean</prop>
+                <prop key="editarDistribuidora.htm">distribuidoraBean</prop>
+                <prop key="eliminarDistribuidora.htm">distribuidoraBean</prop>
+                <prop key="qrVistaDistribuidora.htm">distribuidoraBean</prop>
+                <!-- EMPRESA -->
+                <prop key="altaEmpresa.htm">empresaBean</prop>
+                <prop key="listaEmpresa.htm">empresaBean</prop>
+                <prop key="editarEmpresa.htm">empresaBean</prop>
+                <prop key="eliminarEmpresa.htm">empresaBean</prop>
+                <prop key="qrVistaEmpresa.htm">empresaBean</prop>
+                <!-- JUGADOR -->
+                <prop key="altaJugador.htm">jugadorBean</prop>
+                <prop key="listaJugador.htm">jugadorBean</prop>
+                <prop key="editarJugador.htm">jugadorBean</prop>
+                <prop key="eliminarJugador.htm">jugadorBean</prop>
+                <prop key="qrVistaJugador.htm">jugadorBean</prop>
+                <!-- VIDEOJUEGO -->
+                <prop key="altaVideojuego.htm">videojuegoBean</prop>
+                <prop key="listaVideojuego.htm">videojuegoBean</prop>
+                <prop key="editarVideojuego.htm">videojuegoBean</prop>
+                <prop key="eliminarVideojuego.htm">videojuegoBean</prop>
+                <prop key="qrVistaVideojuego.htm">videojuegoBean</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/WEB-INF/jsp/"
+          p:suffix=".jsp" />
+
+    
+    
+    <bean name="indexController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="index" />
+    
+    <bean name="compradorBean"     class="controlador.controladorComprador"/>
+    <bean name="distribuidoraBean" class="controlador.controladorDistribuidora"/>
+    <bean name="empresaBean"       class="controlador.controladorEmpresa"/>
+    <bean name="jugadorBean"       class="controlador.controladorJugador"/>
+    <bean name="videojuegoBean"    class="controlador.controladorVideojuego"/>
+    
+    
+    
+</beans>
